@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Board from './Board';
+import Board from './components/Board';
 
 function App() {
   const [playerSymbol, setPlayerSymbol] = useState('X');

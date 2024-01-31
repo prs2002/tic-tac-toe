@@ -8,17 +8,15 @@ const PLAYER_X = "X";
 const PLAYER_O = "O";
 
 const winningCombinations = [
-  //Rows
+  
   { combo: [0, 1, 2], strikeClass: "strike-row-1" },
   { combo: [3, 4, 5], strikeClass: "strike-row-2" },
   { combo: [6, 7, 8], strikeClass: "strike-row-3" },
 
-  //Columns
   { combo: [0, 3, 6], strikeClass: "strike-column-1" },
   { combo: [1, 4, 7], strikeClass: "strike-column-2" },
   { combo: [2, 5, 8], strikeClass: "strike-column-3" },
 
-  //Diagonals
   { combo: [0, 4, 8], strikeClass: "strike-diagonal-1" },
   { combo: [2, 4, 6], strikeClass: "strike-diagonal-2" },
 ];
@@ -66,8 +64,6 @@ function TicTacToe() {
     setTiles(newTiles);
     setPlayerTurn(PLAYER_O); // Assume the user is always X
   
-    // Trigger the computer's move
-    await handleComputerMove();
   };
   
   const handleComputerMove = async () => {
@@ -98,22 +94,10 @@ function TicTacToe() {
 
     useEffect(() => {
     checkWinner(tiles, setStrikeClass, setGameState);
-    if (playerTurn === PLAYER_O) {
-        // If it's the computer's turn, trigger the computer's move
+    if (playerTurn === PLAYER_O && gameState === GameState.inProgress) {
         handleComputerMove();
     }
     }, [tiles, playerTurn]);
-
-
-  useEffect(() => {
-    if (tiles.some((tile) => tile !== null)) {
-    }
-  }, [tiles]);
-
-  useEffect(() => {
-    if (gameState !== GameState.inProgress) {
-    }
-  }, [gameState]);
 
   return (
     <div>
